@@ -7,10 +7,8 @@
     "node": ">=14"
   },
   "scripts": {
-    "seed": "node seeds",
     "start": "node ./src/app.js",
-    "watch": "SET NODE_ENV=prod && nodemon ./src/app.js -e \"*\"",
-    "watch-dev": "SET NODE_ENV=dev && nodemon ./src/app.js -e \"*\""
+    "watch": "nodemon ./src/app.js -e \"*\""
   },
   "repository": {
     "type": "git",
