@@ -137,7 +137,7 @@ router.get(
   })
 );
 
-router.get(
+router.post(
   "/admin/ban",
   middleware.auth.authenticateJwt(),
   middleware.auth.requiresRole(2),
