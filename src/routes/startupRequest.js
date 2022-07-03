@@ -110,9 +110,6 @@ router.post(
     });
     await startupRequest.save();
 
-    user.startupRequests.push(startupRequest);
-    await user.save();
-
     return res.status(200).json({
       success: true,
       startupRequest,
