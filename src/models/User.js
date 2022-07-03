@@ -19,14 +19,6 @@ var userSchema = new mongoose.Schema(
       type: Number,
       default: 0,
     },
-    startupRequests: {
-      type: [
-        {
-          type: mongoose.Types.ObjectId,
-          ref: "StartupRequest",
-        },
-      ],
-    },
     startups: {
       type: [
         {
@@ -46,7 +38,6 @@ var userSchema = new mongoose.Schema(
 userSchema.plugin(passportLocalMongoose);
 
 userSchema.pre("findOne", function (next) {
-  this.populate("startupRequests");
   this.populate("startups");
   next();
 });

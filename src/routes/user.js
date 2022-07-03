@@ -108,19 +108,23 @@ router.post("/verifyToken", (req, res, next) => {
   })(req, res, next);
 });
 
-router.get("/", middleware.auth.authenticateJwt(), (req, res, next) => {
-  const user = req.user;
+router.get(
+  "/getMyAccount",
+  middleware.auth.authenticateJwt(),
+  (req, res, next) => {
+    const user = req.user;
 
-  const safeUser = modules.auth.safeUser(user);
+    const safeUser = modules.auth.safeUser(user);
 
-  return res.status(200).json({
-    success: true,
-    user: safeUser,
-  });
-});
+    return res.status(200).json({
+      success: true,
+      user: safeUser,
+    });
+  }
+);
 
 router.get(
-  "/admin",
+  "/getUsers",
   middleware.auth.authenticateJwt(),
   middleware.auth.requiresRole(2),
   modules.errorHandling.wrapAsync(async (req, res, next) => {
@@ -137,8 +141,8 @@ router.get(
   })
 );
 
-router.post(
-  "/admin/ban",
+router.put(
+  "/banUser",
   middleware.auth.authenticateJwt(),
   middleware.auth.requiresRole(2),
   modules.errorHandling.wrapAsync(async (req, res, next) => {

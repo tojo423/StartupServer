@@ -1,5 +1,5 @@
 const User = require("./User");
-const startup = require("./Startup");
-const StartupRequest = require("./StartupRequest");
+const Startup = require("./Startup");
+const Investment = require("./Investment");
 
-module.exports = { User, Startup: startup.Startup, StartupRequest };
+module.exports = { User, Startup, Investment };

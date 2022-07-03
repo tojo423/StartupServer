@@ -16,6 +16,12 @@ class AppError {
   }
 }
 
+class CannotDeleteError extends AppError {
+  constructor(message = "Cannot delete") {
+    super("CannotDelete", message, 409);
+  }
+}
+
 class NotFoundError extends AppError {
   constructor(message = "Requested resource was not found") {
     super("NotFound", message, 404);
@@ -58,4 +64,5 @@ module.exports = {
   InsufficientPrivilegeError,
   AuthError,
   AlreadyExistsError,
+  CannotDeleteError,
 };

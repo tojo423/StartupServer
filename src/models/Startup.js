@@ -38,13 +38,30 @@ var startupSchema = new mongoose.Schema(
     investmentTiers: {
       type: [investmentTierSchema],
     },
-    request: {
-      type: mongoose.Types.ObjectId,
-      ref: "StartupRequest",
+    investments: {
+      type: [
+        {
+          type: mongoose.Types.ObjectId,
+          ref: "Investment",
+        },
+      ],
+      default: [],
+    },
+    status: {
+      type: Number,
+      default: 0,
     },
     user: {
       type: mongoose.Types.ObjectId,
       ref: "User",
+    },
+    legalDocumentUrls: {
+      type: [
+        {
+          type: String,
+        },
+      ],
+      default: [],
     },
   },
   { timestamps: { createdAt: "created_at", updatedAt: "updated_at" } }
@@ -52,4 +69,4 @@ var startupSchema = new mongoose.Schema(
 
 const Startup = mongoose.model("Startup", startupSchema);
 
-module.exports = { startupSchema, Startup };
+module.exports = Startup;

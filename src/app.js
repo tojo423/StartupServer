@@ -21,6 +21,7 @@ global.app = app;
 
 app.use(express.json({ limit: "50mb" }));
 app.use(morgan("tiny"));
+app.use("/uploads", express.static("uploads"));
 
 /*
   run passport setup code
@@ -48,6 +49,7 @@ app.use(middleware.errorHandling.errorHandler());
   start listening
 */
 const port = env.PORT || 3000;
-app.listen(port, (server) => {
+const server = app.listen(port, (server) => {
   console.info(`Server listen on port ${port}`);
 });
+global.server = server;
