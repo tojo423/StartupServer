@@ -24,7 +24,7 @@
 										}
 									]
 								},
-								"method": "POST",
+								"method": "PUT",
 								"header": [],
 								"body": {
 									"mode": "raw",
@@ -36,7 +36,7 @@
 									}
 								},
 								"url": {
-									"raw": "localhost:3000/api/users/admin/ban",
+									"raw": "localhost:3000/api/users/banUser",
 									"host": [
 										"localhost"
 									],
@@ -44,15 +44,14 @@
 									"path": [
 										"api",
 										"users",
-										"admin",
-										"ban"
+										"banUser"
 									]
 								}
 							},
 							"response": []
 						},
 						{
-							"name": "Get All Users",
+							"name": "Get Users",
 							"request": {
 								"auth": {
 									"type": "bearer",
@@ -67,7 +66,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "localhost:3000/api/users/admin",
+									"raw": "localhost:3000/api/users/getUsers",
 									"host": [
 										"localhost"
 									],
@@ -75,7 +74,7 @@
 									"path": [
 										"api",
 										"users",
-										"admin"
+										"getUsers"
 									]
 								}
 							},
@@ -84,142 +83,458 @@
 					]
 				},
 				{
-					"name": "Register",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"user\": {\r\n        \"username\": \"admin\",\r\n        \"email\": \"admin@gmail.com\",\r\n        \"password\": \"declspec\"\r\n    }\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
+					"name": "Public",
+					"item": [
+						{
+							"name": "Register",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"user\": {\r\n        \"username\": \"admin\",\r\n        \"email\": \"admin@gmail.com\",\r\n        \"password\": \"declspec\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/api/users/register",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"users",
+										"register"
+									]
 								}
-							}
+							},
+							"response": []
 						},
-						"url": {
-							"raw": "localhost:3000/api/users/register",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"api",
-								"users",
-								"register"
-							]
+						{
+							"name": "Login",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\": \"admin\",\r\n    \"password\": \"declspec\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/api/users/login",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"users",
+										"login"
+									]
+								}
+							},
+							"response": []
 						}
-					},
-					"response": []
+					]
 				},
 				{
-					"name": "Login",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"username\": \"admin\",\r\n    \"password\": \"declspec\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
+					"name": "User",
+					"item": [
+						{
+							"name": "Verify Token",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MmMxNjk2YTQyZmI4YWIwODIyOWI0NWQiLCJpYXQiOjE2NTY4NDI2MzV9.qwzVL4dafFHx6RNiwIH6KpfKulLeMldbTlKUuIdopZc",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/api/users/verifyToken",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"users",
+										"verifyToken"
+									]
 								}
-							}
+							},
+							"response": []
 						},
-						"url": {
-							"raw": "localhost:3000/api/users/login",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"api",
-								"users",
-								"login"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Verify Token",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MmMxNjk2YTQyZmI4YWIwODIyOWI0NWQiLCJpYXQiOjE2NTY4NDI2MzV9.qwzVL4dafFHx6RNiwIH6KpfKulLeMldbTlKUuIdopZc",
-									"type": "string"
+						{
+							"name": "Get My Account",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MmMxNjk2YTQyZmI4YWIwODIyOWI0NWQiLCJpYXQiOjE2NTY4NDI2MzV9.qwzVL4dafFHx6RNiwIH6KpfKulLeMldbTlKUuIdopZc",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/api/users/getMyAccount",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"users",
+										"getMyAccount"
+									]
 								}
-							]
-						},
-						"method": "POST",
-						"header": [],
-						"url": {
-							"raw": "localhost:3000/api/users/verifyToken",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"api",
-								"users",
-								"verifyToken"
-							]
+							},
+							"response": []
 						}
-					},
-					"response": []
-				},
-				{
-					"name": "Get My Account Data",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MmMxNjk2YTQyZmI4YWIwODIyOWI0NWQiLCJpYXQiOjE2NTY4NDI2MzV9.qwzVL4dafFHx6RNiwIH6KpfKulLeMldbTlKUuIdopZc",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "localhost:3000/api/users",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"api",
-								"users"
-							]
-						}
-					},
-					"response": []
+					]
 				}
 			]
 		},
 		{
-			"name": "Startup Requests",
+			"name": "Startups",
 			"item": [
 				{
-					"name": "Create Startup Request",
+					"name": "Admin",
+					"item": [
+						{
+							"name": "Set Startup Status",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MmMxNjk2YTQyZmI4YWIwODIyOWI0NWQiLCJpYXQiOjE2NTY4NDI2MzV9.qwzVL4dafFHx6RNiwIH6KpfKulLeMldbTlKUuIdopZc",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"status\": 0\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/api/startups/setStartupStatus/62c1b491448d2c7e63601bce",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"startups",
+										"setStartupStatus",
+										"62c1b491448d2c7e63601bce"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Pending Startups",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MmMxNjk2YTQyZmI4YWIwODIyOWI0NWQiLCJpYXQiOjE2NTY4NDI2MzV9.qwzVL4dafFHx6RNiwIH6KpfKulLeMldbTlKUuIdopZc",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/api/startups/getPendingStartups",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"startups",
+										"getPendingStartups"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Startup",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MmMxNjk2YTQyZmI4YWIwODIyOWI0NWQiLCJpYXQiOjE2NTY4NDI2MzV9.qwzVL4dafFHx6RNiwIH6KpfKulLeMldbTlKUuIdopZc",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"startup\": {\r\n        \"status\": 5\r\n    }\r\n}"
+								},
+								"url": {
+									"raw": "localhost:3000/api/startups/updateStartup/62c1b491448d2c7e63601bce",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"startups",
+										"updateStartup",
+										"62c1b491448d2c7e63601bce"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Public",
+					"item": [
+						{
+							"name": "Get Startups",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/api/startups/getStartups",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"startups",
+										"getStartups"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "User",
+					"item": [
+						{
+							"name": "Create Startup",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MmMxNjk2YTQyZmI4YWIwODIyOWI0NWQiLCJpYXQiOjE2NTY4NDI2MzV9.qwzVL4dafFHx6RNiwIH6KpfKulLeMldbTlKUuIdopZc",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"startup\": {\r\n        \"firstName\": \"Tayab\",\r\n        \"lastName\": \"Jamil\",\r\n        \"companyName\": \"XYZ Corp\",\r\n        \"email\": \"tayabjamil4555gmail.com\",\r\n        \"phoneNumber\": \"034096014444\",\r\n        \"websiteUrl\": \"na.com\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/api/startups/createStartup",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"startups",
+										"createStartup"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get My Startups",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MmMxNjk2YTQyZmI4YWIwODIyOWI0NWQiLCJpYXQiOjE2NTY4NDI2MzV9.qwzVL4dafFHx6RNiwIH6KpfKulLeMldbTlKUuIdopZc",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/api/startups/getMyStartups",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"startups",
+										"getMyStartups"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Submit Legal Documents",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MmMxNjk2YTQyZmI4YWIwODIyOWI0NWQiLCJpYXQiOjE2NTY4NDI2MzV9.qwzVL4dafFHx6RNiwIH6KpfKulLeMldbTlKUuIdopZc",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"legalDocumentUrls\": [\r\n        \"https://cdn.discordapp.com/attachments/439544605931864064/993144828101660792/unknown.png\"\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/api/startups/submitLegalDocuments/62c1bc4e01165356629443c0",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"startups",
+										"submitLegalDocuments",
+										"62c1bc4e01165356629443c0"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete My Startup",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MmMxNjk2YTQyZmI4YWIwODIyOWI0NWQiLCJpYXQiOjE2NTY4NDI2MzV9.qwzVL4dafFHx6RNiwIH6KpfKulLeMldbTlKUuIdopZc",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/api/startups/deleteMyStartup/62c1bc4e01165356629443c0",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"startups",
+										"deleteMyStartup",
+										"62c1bc4e01165356629443c0"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "File Upload",
+			"item": [
+				{
+					"name": "Upload File",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MmMxNjk2YTQyZmI4YWIwODIyOWI0NWQiLCJpYXQiOjE2NTY4NDI2MzV9.qwzVL4dafFHx6RNiwIH6KpfKulLeMldbTlKUuIdopZc",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "files",
+									"type": "file",
+									"src": "/C:/Users/geoaeiou/Documents/port1.txt"
+								}
+							]
+						},
 						"url": {
-							"raw": "localhost:3000/api/startupRequests/",
+							"raw": "localhost:3000/api/fileUpload/upload",
 							"host": [
 								"localhost"
 							],
 							"port": "3000",
 							"path": [
 								"api",
-								"startupRequests",
-								""
+								"fileUpload",
+								"upload"
 							]
 						}
 					},
