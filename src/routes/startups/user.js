@@ -79,10 +79,10 @@ router.put(
 
     console.log("startup", startup);
 
-    if (startup.status > 1) {
+    if (startup.status != 1) {
       throw new modules.errorHandling.AppError(
         "InvalidOperation",
-        "Cannot submit legal documents in this status",
+        "Cannot submit legal documents in this state",
         409
       );
     }
@@ -93,7 +93,7 @@ router.put(
       }
     }
 
-    startup.status = 1;
+    startup.status = 2;
 
     await startup.save();
 
@@ -120,7 +120,7 @@ router.delete(
       throw new modules.errorHandling.NotFoundError("Startup not found");
     }
 
-    if (startup.status == 2) {
+    if (startup.status == 3) {
       throw new modules.errorHandling.CannotDeleteError(
         "Cannot delete startup"
       );
