@@ -10,7 +10,14 @@ var investmentSchema = new mongoose.Schema(
       type: mongoose.Types.ObjectId,
       ref: "Startup",
     },
+    startupOwner: {
+      type: mongoose.Types.ObjectId,
+      ref: "User",
+    },
     selectedTierIndex: {
+      type: Number,
+    },
+    amount: {
       type: Number,
     },
     status: {

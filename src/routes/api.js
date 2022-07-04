@@ -1,15 +1,13 @@
 const express = require("express");
 
-const middleware = require("../middleware");
-const userRouter = require("./user");
+const usersRouter = require("./users");
 const fileUploadRouter = require("./fileUpload");
-const startupRouter = require("./startup");
-// const investmentsRouter = require("./investments");
+const startupsRouter = require("./startups");
 
 const apiRouter = express.Router();
 
-apiRouter.use("/users", userRouter);
+apiRouter.use("/users", usersRouter);
 apiRouter.use("/fileUpload", fileUploadRouter);
-apiRouter.use("/startups", startupRouter);
+apiRouter.use("/startups", startupsRouter);
 
 module.exports = apiRouter;

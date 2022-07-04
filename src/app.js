@@ -1,5 +1,6 @@
 const express = require("express");
 const morgan = require("morgan");
+const { queryParser } = require("express-query-parser");
 
 const middleware = require("./middleware");
 const routes = require("./routes");
@@ -22,6 +23,14 @@ global.app = app;
 app.use(express.json({ limit: "50mb" }));
 app.use(morgan("tiny"));
 app.use("/uploads", express.static("uploads"));
+app.use(
+  queryParser({
+    parseNull: true,
+    parseUndefined: true,
+    parseBoolean: true,
+    parseNumber: true,
+  })
+);
 
 /*
   run passport setup code

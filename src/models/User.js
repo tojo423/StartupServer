@@ -37,9 +37,4 @@ var userSchema = new mongoose.Schema(
 
 userSchema.plugin(passportLocalMongoose);
 
-userSchema.pre("findOne", function (next) {
-  this.populate("startups");
-  next();
-});
-
 module.exports = mongoose.model("User", userSchema);
