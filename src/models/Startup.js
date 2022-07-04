@@ -4,7 +4,11 @@ var investmentTierSchema = new mongoose.Schema({
   name: {
     type: String,
   },
-  amount: {
+
+  investment: {
+    type: Number,
+  },
+  equity: {
     type: Number,
   },
 });
@@ -17,7 +21,16 @@ var startupSchema = new mongoose.Schema(
     lastName: {
       type: String,
     },
+    description: {
+      type: String,
+    },
     companyName: {
+      type: String,
+    },
+    currentNetWorth: {
+      type: Number,
+    },
+    image: {
       type: String,
     },
     email: {
@@ -64,6 +77,7 @@ var startupSchema = new mongoose.Schema(
       default: [],
     },
   },
+
   { timestamps: { createdAt: "created_at", updatedAt: "updated_at" } }
 );
 

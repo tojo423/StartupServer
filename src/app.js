@@ -1,5 +1,6 @@
 const express = require("express");
 const morgan = require("morgan");
+const cors = require("cors");
 const { queryParser } = require("express-query-parser");
 
 const middleware = require("./middleware");
@@ -22,6 +23,7 @@ global.app = app;
 
 app.use(express.json({ limit: "50mb" }));
 app.use(morgan("tiny"));
+app.use(cors());
 app.use("/uploads", express.static("uploads"));
 app.use(
   queryParser({
@@ -61,7 +63,7 @@ app.use(middleware.errorHandling.errorHandler());
 /*
   start listening
 */
-const port = env.PORT || 3000;
+const port = env.PORT || 4000;
 const server = app.listen(port, (server) => {
   console.info(`Server listen on port ${port}`);
 });

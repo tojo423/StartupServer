@@ -7,11 +7,27 @@ const modules = require("../../modules");
 const router = express.Router();
 
 router.get(
+  "/getStartups/:id",
+  modules.errorHandling.wrapAsync(async (req, res) => {
+    const id = req.params.id;
+
+    const startup = await models.Startup.findById(id);
+
+    return res.status(200).json({
+      success: true,
+      startup,
+    });
+  })
+);
+
+router.get(
   "/getStartups",
   modules.errorHandling.wrapAsync(async (req, res) => {
     const query = req.query;
 
-    const findQuery = {};
+    const findQuery = {
+      status: 3,
+    };
     if (query.startupId) {
       findQuery._id = new mongoose.Types.ObjectId(query.startupId);
     }

@@ -31,6 +31,14 @@ var userSchema = new mongoose.Schema(
       type: Boolean,
       default: false,
     },
+    investments: {
+      type: [
+        {
+          type: mongoose.Types.ObjectId,
+          ref: "Investment",
+        },
+      ],
+    },
   },
   { timestamps: { createdAt: "created_at", updatedAt: "updated_at" } }
 );

@@ -29,6 +29,20 @@ router.post(
   })
 );
 
+// router.get(
+//   "/getInvestedStartups",
+//   modules.errorHandling.wrapAsync(async (req, res) => {
+//     const user = req.user;
+
+//     const investments = await models.Investment.find({
+//       user,
+//     })
+//       .populate("startup")
+//       .exec();
+
+//   })
+// );
+
 router.get(
   "/getStartups",
   modules.errorHandling.wrapAsync(async (req, res) => {
@@ -150,26 +164,33 @@ router.post(
       throw new modules.errorHandling.NotFoundError("Startup not found");
     }
 
-    const amount = startup.investmentTiers[tierIndex].amount;
-
-    const investment = new models.Investment({
-      user,
-      startup,
+    let investment = new models.Investment({
+      user: new mongoose.Types.ObjectId(user._id),
+      startup: new mongoose.Types.ObjectId(startup._id),
       selectedTierIndex: tierIndex,
       startupOwner: startup.user,
-      amount,
     });
     await investment.save();
 
+    //user.investments.push(investment);
+    //startup.investments.push(investment);
+
+    //await Promise.all([startup.save()]);
+
+    const gotInvestment = await models.Investment.findById(investment._id)
+      .populate("startup")
+      .populate("user")
+      .exec();
+
     return res.status(200).json({
       success: true,
-      investment,
+      investment: gotInvestment,
     });
   })
 );
 
 router.get(
-  "/getIncomingInvestments",
+  "/getIncominggotInvestments",
   modules.errorHandling.wrapAsync(async (req, res) => {
     const user = req.user;
 
