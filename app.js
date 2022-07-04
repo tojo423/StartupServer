@@ -3,13 +3,13 @@ const morgan = require("morgan");
 const cors = require("cors");
 const { queryParser } = require("express-query-parser");
 
-const middleware = require("./middleware");
-const routes = require("./routes");
+const middleware = require("./src/middleware");
+const routes = require("./src/routes");
 
 /*
   run mongo db connection code
 */
-require("./mongo");
+require("./src/mongo");
 
 const env = process.env;
 
@@ -37,7 +37,7 @@ app.use(
 /*
   run passport setup code
 */
-require("./passport");
+require("./src/passport");
 
 /*
   register our routes
