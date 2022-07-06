@@ -29,7 +29,6 @@ module.exports = {
   route: "/upload",
   preware: [upload.array("files", 5)],
   handler: modules.errorHandling.wrapAsync(async (req, res) => {
-    console.log("files", req.files);
     const fileUrls = req.files.map((file) => {
       const cleaned = file.path.replace(
         String.fromCharCode(92),

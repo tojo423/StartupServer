@@ -11,7 +11,6 @@ module.exports = {
     const startupId = req.params.startupId;
 
     const startupData = req.body.startup;
-    console.log("startupData", startupData);
 
     const startup = await models.Startup.findOneAndUpdate(
       {

@@ -14,10 +14,7 @@ module.exports = {
       $or: [{ username }, { email }],
     });
 
-    console.log("existing user", existingUser);
-
     if (existingUser) {
-      console.log("user already exists");
       throw new modules.errorHandling.AlreadyExistsError("User already exists");
     }
 
@@ -28,8 +25,6 @@ module.exports = {
       email: email,
       role: isAdmin ? 2 : 0,
     });
-
-    console.log("newUser", newUser);
 
     models.User.register(newUser, password, (err, user) => {
       if (err) {
