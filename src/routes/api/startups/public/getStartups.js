@@ -26,17 +26,15 @@ module.exports = {
       sort = { [query.sortBy]: order };
     }
 
-    const startup = await models.Startup.find(findQuery)
+    const startups = await models.Startup.find(findQuery)
       .sort(sort)
       .skip(query.skip || 0)
       .limit(query.limit || 100)
-      .populate("user")
-      .populate("investments")
       .exec();
 
     return res.status(200).json({
       success: true,
-      startup,
+      startups,
     });
   }),
 };

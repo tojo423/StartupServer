@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "e9a04581-5e3e-42d7-8c81-73748668f795",
+		"_postman_id": "3bba5fa0-4986-4835-94f7-f244218f284e",
 		"name": "Startup",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -26,7 +26,7 @@
 									}
 								},
 								"url": {
-									"raw": "localhost:3000/api/users/admin/banUser/62c1d3e3bd004a706f036e78",
+									"raw": "localhost:3000/api/users/admin/banUser/62c419b4ba70332379056c31",
 									"host": [
 										"localhost"
 									],
@@ -36,7 +36,7 @@
 										"users",
 										"admin",
 										"banUser",
-										"62c1d3e3bd004a706f036e78"
+										"62c419b4ba70332379056c31"
 									]
 								}
 							},
@@ -75,7 +75,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"user\": {\r\n        \"username\": \"admin2\",\r\n        \"email\": \"admin2@gmail.com\",\r\n        \"password\": \"declspec\"\r\n    }\r\n}",
+									"raw": "{\r\n    \"user\": {\r\n        \"username\": \"admin3\",\r\n        \"email\": \"admin3@gmail.com\",\r\n        \"password\": \"declspec\"\r\n    }\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -365,37 +365,6 @@
 							"response": []
 						},
 						{
-							"name": "Submit Legal Documents",
-							"request": {
-								"method": "PUT",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"legalDocumentUrls\": [\r\n        \"https://cdn.discordapp.com/attachments/439544605931864064/993144828101660792/unknown.png\"\r\n    ]\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "localhost:3000/api/startups/user/submitLegalDocuments/62c1bc4e01165356629443c0",
-									"host": [
-										"localhost"
-									],
-									"port": "3000",
-									"path": [
-										"api",
-										"startups",
-										"user",
-										"submitLegalDocuments",
-										"62c1bc4e01165356629443c0"
-									]
-								}
-							},
-							"response": []
-						},
-						{
 							"name": "Delete Startup",
 							"request": {
 								"method": "DELETE",
@@ -416,6 +385,88 @@
 								}
 							},
 							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "File Upload",
+			"item": [
+				{
+					"name": "User",
+					"item": [
+						{
+							"name": "Upload File",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "files",
+											"type": "file",
+											"src": []
+										}
+									]
+								},
+								"url": {
+									"raw": "localhost:3000/api/uploads/user/upload",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"uploads",
+										"user",
+										"upload"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Investments",
+			"item": [
+				{
+					"name": "User",
+					"item": [
+						{
+							"name": "Set Investment Status",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"status\": 1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/api/investments/user/setInvestmentStatus/62c2a774f3b32d311572c8ed",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"investments",
+										"user",
+										"setInvestmentStatus",
+										"62c2a774f3b32d311572c8ed"
+									]
+								}
+							},
+							"response": []
 						},
 						{
 							"name": "Create Investment",
@@ -432,67 +483,36 @@
 									}
 								},
 								"url": {
-									"raw": "localhost:3000/api/startups/user/createInvestment/62c2a3d64ca0c23eae8a6eb5",
+									"raw": "localhost:3000/api/investments/user/createInvestment/62c419ccba70332379056c35",
 									"host": [
 										"localhost"
 									],
 									"port": "3000",
 									"path": [
 										"api",
-										"startups",
+										"investments",
 										"user",
 										"createInvestment",
-										"62c2a3d64ca0c23eae8a6eb5"
+										"62c419ccba70332379056c35"
 									]
 								}
 							},
 							"response": []
 						},
 						{
-							"name": "Set Investment Status",
-							"request": {
-								"method": "PUT",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"status\": 1\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "localhost:3000/api/startups/user/setInvestmentStatus/62c2a774f3b32d311572c8ed",
-									"host": [
-										"localhost"
-									],
-									"port": "3000",
-									"path": [
-										"api",
-										"startups",
-										"user",
-										"setInvestmentStatus",
-										"62c2a774f3b32d311572c8ed"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Get Investments",
+							"name": "Get Incomming Investments",
 							"request": {
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "localhost:3000/api/startups/user/getIncomingInvestments?startupId=62c2a3d64ca0c23eae8a6eb5",
+									"raw": "localhost:3000/api/investments/user/getIncomingInvestments?startupId=62c2a3d64ca0c23eae8a6eb5",
 									"host": [
 										"localhost"
 									],
 									"port": "3000",
 									"path": [
 										"api",
-										"startups",
+										"investments",
 										"user",
 										"getIncomingInvestments"
 									],
@@ -505,53 +525,29 @@
 								}
 							},
 							"response": []
+						},
+						{
+							"name": "Get Investments",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/api/investments/user/getInvestments",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"investments",
+										"user",
+										"getInvestments"
+									]
+								}
+							},
+							"response": []
 						}
 					]
-				}
-			]
-		},
-		{
-			"name": "File Upload",
-			"item": [
-				{
-					"name": "Upload File",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MmMxNjk2YTQyZmI4YWIwODIyOWI0NWQiLCJpYXQiOjE2NTY4NDI2MzV9.qwzVL4dafFHx6RNiwIH6KpfKulLeMldbTlKUuIdopZc",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "files",
-									"type": "file",
-									"src": "/C:/Users/geoaeiou/Documents/port1.txt"
-								}
-							]
-						},
-						"url": {
-							"raw": "localhost:3000/api/fileUpload/upload",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"api",
-								"fileUpload",
-								"upload"
-							]
-						}
-					},
-					"response": []
 				}
 			]
 		}
@@ -561,7 +557,7 @@
 		"bearer": [
 			{
 				"key": "token",
-				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MmMxZDNlM2JkMDA0YTcwNmYwMzZlNzgiLCJpYXQiOjE2NTY5MjA4MTh9.7KWTFXh6P7EU6eU0UH_MlmY7_s2DpFdWH5NkGC3N_7k",
+				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MmM1ODE1ZjkzYTYwYTZlZTI2MzY0M2UiLCJpYXQiOjE2NTcxMTA4Nzl9.CWy_73YKL4dzRx82E3qEzYLVjBW_LwdUnBG8CjIutls",
 				"type": "string"
 			}
 		]

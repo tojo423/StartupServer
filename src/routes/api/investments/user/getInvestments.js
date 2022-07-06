@@ -12,7 +12,7 @@ module.exports = {
 
     const query = req.query;
 
-    const findQuery = {};
+    const findQuery = { user };
     if (query.startupId) {
       findQuery.startup = new mongoose.Types.ObjectId(query.startupId);
     }
@@ -20,8 +20,7 @@ module.exports = {
     const investments = await models.Investment.find(findQuery)
       .skip(query.skip || 0)
       .limit(query.limit || 100)
-      .populate("user")
-      .populate("startup");
+      .exec();
 
     return res.status(200).json({
       success: true,

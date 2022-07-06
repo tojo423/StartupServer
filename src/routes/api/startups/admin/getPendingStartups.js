@@ -27,6 +27,8 @@ module.exports = {
     if (query.sortBy) {
       const order = query.descending ? -1 : 1;
       sort = { [query.sortBy]: order };
+    } else {
+      sort = { _id: 1 };
     }
 
     const startups = await models.Startup.aggregate()

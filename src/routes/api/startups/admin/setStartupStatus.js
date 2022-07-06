@@ -18,7 +18,7 @@ module.exports = {
       },
       {
         $set: {
-          status: newstatus,
+          status: newStatus,
         },
       },
       {
