@@ -14,7 +14,7 @@ module.exports = {
 
     const startupId = req.params.startupId;
 
-    const startup = await models.Startup.findById(startupId);
+    const startup = await models.Startup.findById(startupId).exec();
     if (!startup) {
       throw new modules.errorHandling.NotFoundError("Startup not found");
     }
@@ -23,7 +23,7 @@ module.exports = {
       user: new mongoose.Types.ObjectId(user._id),
       startup: new mongoose.Types.ObjectId(startup._id),
       selectedTierIndex: tierIndex,
-      startupOwner: startup.user,
+      startupOwner: new mongoose.Types.ObjectId(startup.user),
     });
     await investment.save();
 

@@ -17,7 +17,7 @@ module.exports = {
     const investment = await models.Investment.findOneAndUpdate(
       {
         _id: new mongoose.Types.ObjectId(investmentId),
-        startupOwner: user,
+        startupOwner: new mongoose.Types.ObjectId(user._id),
       },
       {
         $set: {
@@ -27,18 +27,7 @@ module.exports = {
       {
         new: true,
       }
-    )
-      .populate("startup")
-      .exec();
-
-    console.log(investment.startup.user._id, user._id);
-    if (!investment.startup.user._id.equals(user._id)) {
-      throw new modules.errorHandling.AppError(
-        "Forbidden",
-        "Cannot modify investment owned by other startup",
-        403
-      );
-    }
+    ).exec();
 
     return res.status(200).json({
       success: true,

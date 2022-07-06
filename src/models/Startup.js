@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const betterId = require("mongoose-better-id");
 
 var investmentTierSchema = new mongoose.Schema({
   name: {
@@ -71,6 +72,12 @@ var startupSchema = new mongoose.Schema(
 
   { timestamps: { createdAt: "created_at", updatedAt: "updated_at" } }
 );
+
+startupSchema.plugin(betterId, {
+  connection: mongoose.connection,
+  field: "_id",
+  prefix: "Startup--",
+});
 
 const Startup = mongoose.model("Startup", startupSchema);
 
