@@ -3,13 +3,13 @@ const morgan = require("morgan");
 const cors = require("cors");
 const { queryParser } = require("express-query-parser");
 
-const middleware = require("./src/middleware");
-const routes = require("./src/routes");
+const middleware = require("./middleware");
+const routes = require("./routes");
 
 /*
   run mongo db connection code
 */
-require("./src/mongo");
+require("./mongo");
 
 const env = process.env;
 
@@ -37,7 +37,7 @@ app.use(
 /*
   run passport setup code
 */
-require("./src/passport");
+require("./passport");
 
 /*
   register our routes
@@ -59,7 +59,7 @@ app.use(middleware.errorHandling.errorHandler());
 /*
   start listening
 */
-const port = env.PORT || 4000;
+const port = env.PORT || 3000;
 const server = app.listen(port, (server) => {
   console.info(`Server listen on port ${port}`);
 });

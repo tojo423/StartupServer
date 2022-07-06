@@ -19,25 +19,9 @@ var userSchema = new mongoose.Schema(
       type: Number,
       default: 0,
     },
-    startups: {
-      type: [
-        {
-          type: mongoose.Types.ObjectId,
-          ref: "Startup",
-        },
-      ],
-    },
     isBanned: {
       type: Boolean,
       default: false,
-    },
-    investments: {
-      type: [
-        {
-          type: mongoose.Types.ObjectId,
-          ref: "Investment",
-        },
-      ],
     },
   },
   { timestamps: { createdAt: "created_at", updatedAt: "updated_at" } }

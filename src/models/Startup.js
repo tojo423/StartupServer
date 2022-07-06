@@ -51,15 +51,6 @@ var startupSchema = new mongoose.Schema(
     investmentTiers: {
       type: [investmentTierSchema],
     },
-    investments: {
-      type: [
-        {
-          type: mongoose.Types.ObjectId,
-          ref: "Investment",
-        },
-      ],
-      default: [],
-    },
     status: {
       type: Number,
       default: 0,

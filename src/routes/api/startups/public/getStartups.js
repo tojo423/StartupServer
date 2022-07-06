@@ -1,28 +1,13 @@
 const express = require("express");
 const mongoose = require("mongoose");
 
-const models = require("../../models");
-const modules = require("../../modules");
+const models = require("../../../../models");
+const modules = require("../../../../modules");
 
-const router = express.Router();
-
-router.get(
-  "/getStartups/:id",
-  modules.errorHandling.wrapAsync(async (req, res) => {
-    const id = req.params.id;
-
-    const startup = await models.Startup.findById(id);
-
-    return res.status(200).json({
-      success: true,
-      startup,
-    });
-  })
-);
-
-router.get(
-  "/getStartups",
-  modules.errorHandling.wrapAsync(async (req, res) => {
+module.exports = {
+  method: "GET",
+  route: "/getStartups",
+  handler: modules.errorHandling.wrapAsync(async (req, res) => {
     const query = req.query;
 
     const findQuery = {
@@ -53,7 +38,5 @@ router.get(
       success: true,
       startup,
     });
-  })
-);
-
-module.exports = router;
+  }),
+};

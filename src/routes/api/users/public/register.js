@@ -1,14 +1,13 @@
 const express = require("express");
 const passport = require("passport");
 
-const models = require("../../models");
-const modules = require("../../modules");
+const models = require("../../../../models");
+const modules = require("../../../../modules");
 
-const router = express.Router();
-
-router.post(
-  "/register",
-  modules.errorHandling.wrapAsync(async (req, res, next) => {
+module.exports = {
+  method: "POST",
+  route: "/register",
+  handler: modules.errorHandling.wrapAsync(async (req, res, next) => {
     const { username, email, password } = req.body.user;
 
     const existingUser = await models.User.findOne({
@@ -46,34 +45,5 @@ router.post(
         user: safeUser,
       });
     });
-  })
-);
-
-router.post("/login", (req, res, next) => {
-  passport.authenticate("local", (err, user, info) => {
-    if (err) {
-      return next(new modules.errorHandling.AuthError(err.message));
-    }
-
-    if (!user) {
-      return next(new modules.errorHandling.AuthError("User not found"));
-    }
-
-    req.login(user, { session: false }, (err) => {
-      if (err) {
-        return next(new modules.errorHandling.AuthError(err.message));
-      }
-
-      const token = modules.auth.generateToken(user._id);
-      const safeUser = modules.auth.safeUser(user);
-
-      return res.status(200).json({
-        success: true,
-        token: token,
-        user: safeUser,
-      });
-    });
-  })(req, res, next);
-});
-
-module.exports = router;
+  }),
+};

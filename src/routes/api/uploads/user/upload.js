@@ -1,11 +1,12 @@
 const express = require("express");
 const multer = require("multer");
 const path = require("path");
+const slugify = require("slugify");
 
-const middleware = require("../middleware");
-const modules = require("../modules");
+const middleware = require("../../../../middleware");
+const modules = require("../../../../modules");
 
-const router = express.Router();
+const MAX_FILE_SIZE = 5242880; // bytes (5 megabytes)
 
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -14,21 +15,21 @@ var storage = multer.diskStorage({
   filename: function (req, file, cb) {
     cb(
       null,
-      file.originalname + "-" + Date.now() + path.extname(file.originalname)
+      slugify(file.originalname) +
+        "-" +
+        Date.now() +
+        path.extname(file.originalname)
     ); //Appending extension
   },
 });
-const upload = multer({ storage });
+const upload = multer({ storage, limits: { fileSize: MAX_FILE_SIZE } });
 
-/*
-  gets startup request by id authored by the authenticated user
-*/
-router.post(
-  "/upload",
-  middleware.auth.authenticateJwt(),
-  upload.array("files", 5),
-  modules.errorHandling.wrapAsync(async (req, res) => {
-    console.log(req.files);
+module.exports = {
+  method: "POST",
+  route: "/upload",
+  preware: [upload.array("files", 5)],
+  handler: modules.errorHandling.wrapAsync(async (req, res) => {
+    console.log("files", req.files);
     const fileUrls = req.files.map((file) => {
       const cleaned = file.path.replace(
         String.fromCharCode(92),
@@ -41,7 +42,5 @@ router.post(
       success: true,
       fileUrls,
     });
-  })
-);
-
-module.exports = router;
+  }),
+};

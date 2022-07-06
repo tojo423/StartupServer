@@ -21,7 +21,6 @@ passport.use(
       passReqToCallback: true,
     },
     (req, payload, done) => {
-      console.log("inside jwt shit", payload);
       User.findById(payload.userId, function (err, user) {
         req.isAuthenticated = () => {
           return !!user;

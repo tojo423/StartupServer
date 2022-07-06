@@ -38,6 +38,14 @@ const requiresRole = (role) => {
   };
 };
 
+const isNotBanned = () => {
+  return (req, res, next) => {
+    const user = req.user;
+    if (user.isBanned) {
+    }
+  };
+};
+
 module.exports = {
   requiresRole,
   authenticateJwt,
