@@ -1,7 +1,7 @@
 const userRouter = require("./user");
 
 module.exports = {
-  name: "investments",
+  resourceName: "investments",
   routeDefs: {
     user: userRouter,
   },
