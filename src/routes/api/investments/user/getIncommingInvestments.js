@@ -14,7 +14,7 @@ module.exports = {
     console.log(query);
 
     const findQuery = {
-      startupOwner: user,
+      startupOwner: new mongoose.Types.ObjectId(user._id),
     };
     if (query.startupId) {
       findQuery.startup = new mongoose.Types.ObjectId(query.startupId);
