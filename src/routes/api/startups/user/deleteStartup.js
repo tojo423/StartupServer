@@ -12,7 +12,11 @@ module.exports = {
 
     const startupId = req.params.startupId;
 
-    const startup = await models.Startup.findOne({ user, startupId });
+    const startup = await models.Startup.findOne({
+      user: new mongoose.Types.ObjectId(user._id),
+      startupId: new mongoose.Types.ObjectId(startupId),
+    });
+
     if (startup.status == 3) {
       throw new modules.errorHandling.AppError(
         "InvalidOperation",

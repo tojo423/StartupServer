@@ -13,7 +13,7 @@ module.exports = {
     const startupId = req.params.startupId;
 
     const startup = await models.Startup.findOne({
-      user,
+      user: new mongoose.Types.ObjectId(user._id),
       _id: new mongoose.Types.ObjectId(startupId),
     });
 

@@ -14,7 +14,7 @@ module.exports = {
 
     const startup = new models.Startup({
       ...startupData,
-      user,
+      user: new mongoose.Types.ObjectId(user._id),
     });
     await startup.save();
 
