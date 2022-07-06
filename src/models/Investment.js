@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-const betterId = require("mongoose-better-id");
 
 /* 
   Investments contains a pointer to their User and Startup
@@ -40,12 +39,6 @@ var investmentSchema = new mongoose.Schema(
   },
   { timestamps: { createdAt: "created_at", updatedAt: "updated_at" } }
 );
-
-investmentSchema.plugin(betterId, {
-  connection: mongoose.connection,
-  field: "_id",
-  prefix: "Investment--",
-});
 
 const Investment = mongoose.model("Investment", investmentSchema);
 

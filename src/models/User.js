@@ -1,6 +1,5 @@
 const mongoose = require("mongoose");
 const passportLocalMongoose = require("passport-local-mongoose");
-const betterId = require("mongoose-better-id");
 
 var userSchema = new mongoose.Schema(
   {
@@ -29,11 +28,5 @@ var userSchema = new mongoose.Schema(
 );
 
 userSchema.plugin(passportLocalMongoose);
-
-userSchema.plugin(betterId, {
-  connection: mongoose.connection,
-  field: "_id",
-  prefix: "User--",
-});
 
 module.exports = mongoose.model("User", userSchema);
