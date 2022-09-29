@@ -34,6 +34,10 @@ app.use(
   })
 );
 
+app.get("/", (req, res) => {
+  res.send("API ONLINE");
+});
+
 /*
   run passport setup code
 */

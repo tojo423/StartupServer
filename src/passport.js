@@ -17,7 +17,7 @@ passport.use(
   new JWTstrategy(
     {
       jwtFromRequest: passportJwt.ExtractJwt.fromAuthHeaderAsBearerToken(),
-      secretOrKey: env.PASSPORT_JWT_SECRET || "kommaninjaz3g84",
+      secretOrKey: env.PASSPORT_JWT_SECRET || "some_Secret",
       passReqToCallback: true,
     },
     (req, payload, done) => {

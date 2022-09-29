@@ -1,5 +1,5 @@
 {
-  "name": "komma_server",
+  "name": "startups_server",
   "version": "1.0.0",
   "description": "",
   "main": "./src/app.js",
@@ -10,17 +10,9 @@
     "start": "node .",
     "watch": "nodemon . -e \"*\""
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/tojo423/komma_server.git"
-  },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/tojo423/komma_server/issues"
-  },
-  "homepage": "https://github.com/tojo423/komma_server#readme",
   "dependencies": {
     "bcrypt": "^5.0.1",
     "body-parser": "^1.20.0",

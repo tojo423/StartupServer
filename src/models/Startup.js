@@ -67,6 +67,9 @@ var startupSchema = new mongoose.Schema(
       ],
       default: [],
     },
+    netWorth: {
+      type: [Number],
+    },
   },
 
   { timestamps: { createdAt: "created_at", updatedAt: "updated_at" } }

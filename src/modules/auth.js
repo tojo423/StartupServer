@@ -4,7 +4,7 @@ const env = process.env;
 
 const generateToken = (userId) => {
   const body = { userId: userId };
-  const token = jwt.sign(body, env.PASSPORT_JWT_SECRET || "kommaninjaz3g84");
+  const token = jwt.sign(body, env.PASSPORT_JWT_SECRET || "some_Secret");
   return token;
 };
 
